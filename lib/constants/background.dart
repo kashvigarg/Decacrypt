@@ -9,7 +9,7 @@ class BackgroundImg extends StatelessWidget {
     return Scaffold(
         body: Container(
       height: SizeConfig.deviceHeight,
-      width: SizeConfig.deviveWidth,
+      width: SizeConfig.deviceWidth,
       decoration: const BoxDecoration(
           image: DecorationImage(
         opacity: 0.8,

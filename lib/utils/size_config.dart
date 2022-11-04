@@ -8,7 +8,7 @@ class SizeConfig {
   static Orientation? _orientation;
   static Brightness? _brightness;
 
-  static double? get deviveWidth => _deviceWidth;
+  static double? get deviceWidth => _deviceWidth;
   static double? get deviceHeight => _deviceHeight;
   static Orientation? get orientation => _orientation;
   static Brightness? get brightness => _brightness;

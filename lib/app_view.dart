@@ -1,20 +1,18 @@
 import 'package:decacrypt/constants/app_strings.dart';
-import 'package:decacrypt/constants/background.dart';
+import 'package:decacrypt/constants/widgets/animated_triangle.dart';
 import 'package:decacrypt/themes/text_styles.dart';
 import 'package:decacrypt/utils/size_config.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:go_router/go_router.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      BackgroundImg(),
-      SafeArea(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
         child: Scrollbar(
           child: Center(
             child: Column(
@@ -22,21 +20,37 @@ class AppView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(AppStrings.title,
-                    style: TextStyle(color: Colors.black, fontSize: 30)
-                    // style: TextStyles.h1.copyWith(
-                    //   fontSize: 20.adjustSize,
-                    //   color: Color(0x76F34C41),
-                    ),
-                Container(
-                  color: Colors.white,
-                  height: 300,
-                  width: 600,
+                    textScaleFactor: 3, style: TextStyles.h1),
+                SizedBox(
+                  width: SizeConfig.deviceWidth! * 60,
+                  child: Text(
+                    AppStrings.description,
+                    textAlign: TextAlign.center,
+                    textScaleFactor: 2,
+                    softWrap: true,
+                    style: TextStyles.h1,
+                  ),
+                ),
+                InkWell(
+                  child: CustomTriangle(),
+                  onTap: () => GoRouter.of(context).push('/work'),
+                ),
+                // Container(
+                //   height: SizeConfig.deviceHeight! * 30,
+                //   width: SizeConfig.deviceWidth! * 10,
+                //   color: Colors.green,
+                // ),
+                Center(
+                  child: Text(
+                    "Begin decacrypting",
+                    style: TextStyles.h1,
+                  ),
                 )
               ],
             ),
           ),
         ),
       ),
-    ]);
+    );
   }
 }

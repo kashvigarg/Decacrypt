@@ -18,7 +18,7 @@ class _CustomTriangleState extends State<CustomTriangle> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      color: Colors.transparent,
       height: 200,
       width: 200,
       child: CustomPaint(
@@ -32,7 +32,7 @@ class TrianglePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Color(0xff4B0082)
+      ..color = Colors.white
       ..strokeWidth = 10
       ..style = PaintingStyle.fill;
 

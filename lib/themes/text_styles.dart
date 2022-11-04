@@ -11,8 +11,18 @@ extension AdaptiveSize on num {
 
 class TextStyles {
   static TextStyle get h1 => TextStyle(
-        fontSize: 20.adjustSize,
+        fontSize: 40.adjustSize,
         fontFamily: 'ChakraPetch',
         color: Color.fromARGB(255, 238, 234, 232),
+      );
+  static TextStyle get h2 => TextStyle(
+        fontSize: 27.adjustSize,
+        fontFamily: 'ChakraPetch',
+        color: Color.fromARGB(255, 238, 234, 232),
+      );
+  static TextStyle get h3 => TextStyle(
+        fontSize: 22.adjustSize,
+        fontFamily: 'ChakraPetch',
+        color: Colors.white,
       );
 }

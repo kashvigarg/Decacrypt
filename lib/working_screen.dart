@@ -1,9 +1,6 @@
 import 'package:decacrypt/themes/text_styles.dart';
 import 'package:decacrypt/utils/size_config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 
 class WorkingScreen extends StatelessWidget {
   const WorkingScreen({super.key});
@@ -22,8 +19,14 @@ class WorkingScreen extends StatelessWidget {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _customContainer(label: "ENCODE"),
-                  _customContainer(label: "VIEW CIPHER")
+                  _customContainer(
+                      widget: _dropdownRow(),
+                      textLabel: "Enter/Paste your data"),
+                  _customContainer(
+                      widget: Text(
+                    "VIEW CIPHER",
+                    style: TextStyles.h2,
+                  ))
                 ],
               ),
               _customCipher()
@@ -35,18 +38,21 @@ class WorkingScreen extends StatelessWidget {
   }
 }
 
-Widget _customContainer({required String label}) {
+Widget _customContainer({required Widget widget, String? textLabel}) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
-      Text(
-        label,
-        style: TextStyles.h1,
-      ),
+      widget,
       SizedBox(
         height: SizeConfig.deviceHeight! * 2,
       ),
       Container(
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: TextField(
+            decoration: InputDecoration(hintText: textLabel),
+          ),
+        ),
         height: SizeConfig.deviceHeight! * 30,
         width: SizeConfig.deviceWidth! * 30,
         decoration: BoxDecoration(
@@ -61,4 +67,44 @@ Widget _customCipher() {
     minRadius: SizeConfig.deviceHeight! * 28,
     backgroundColor: Colors.white,
   );
+}
+
+List<DropdownMenuItem<String>> get ciphers {
+  List<DropdownMenuItem<String>> ciphers = [
+    DropdownMenuItem(child: Text("ENCODE"), value: "ENCODE"),
+    DropdownMenuItem(child: Text("DECODE"), value: "DECODE"),
+  ];
+  return ciphers;
+}
+
+Widget _dropdownRow() {
+  return DropdownButton(
+    items: ciphers,
+    onChanged: _code(),
+    hint: Text(
+      "FUNCTION",
+      style: TextStyles.h2,
+    ),
+  );
+}
+
+_code() {}
+
+Widget _customRadioButton() {
+  // return Row(
+  // children: [
+  return RadioListTile(
+    value: false,
+    groupValue: false,
+    onChanged: _code(),
+    title: Text("Caesar Cipher"),
+  );
+  // RadioListTile(
+  //   value: false,
+  //   groupValue: false,
+  //   onChanged: _code(),
+  //   title: Text("Vigenere Cipher"),
+  // )
+  // ],
+  // );
 }

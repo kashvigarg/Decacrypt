@@ -93,7 +93,10 @@ List<DropdownMenuItem<String>> get ciphers {
 Widget _dropdownRow() {
   return DropdownButton(
     items: ciphers,
-    onChanged: _code(),
+    // value: ciphers[0],
+    onChanged: (newValue) {
+      //TODO : add setstate
+    },
     hint: Text(
       "FUNCTION",
       style: TextStyles.h2,
@@ -112,7 +115,7 @@ Widget _customRadioBar() {
             fillColor: MaterialStateProperty.all(Colors.green),
             value: false,
             groupValue: false,
-            onChanged: _code(),
+            onChanged: ((value) => {}),
           ),
           Text(
             "Caesar Cipher",
@@ -126,10 +129,10 @@ Widget _customRadioBar() {
             fillColor: MaterialStateProperty.all(Colors.green),
             value: false,
             groupValue: false,
-            onChanged: _code(),
+            onChanged: ((value) => {}),
           ),
           Text(
-            "Caesar Cipher",
+            "Vigenere Cipher",
             style: TextStyles.h3,
           )
         ],

@@ -1,5 +1,8 @@
+import 'package:decacrypt/constants/background.dart';
+import 'package:decacrypt/info_tab.dart';
 import 'package:decacrypt/themes/text_styles.dart';
 import 'package:decacrypt/utils/size_config.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 
 class WorkingScreen extends StatelessWidget {
@@ -10,29 +13,33 @@ class WorkingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(50.0),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _customContainer(
-                      widget: _dropdownRow(),
-                      textLabel: "Enter/Paste your data"),
-                  _customContainer(
-                      widget: Text(
-                    "VIEW CIPHER",
-                    style: TextStyles.h2,
-                  ))
-                ],
-              ),
-              _customCipher()
-            ],
+        child: BackgroundImg(children: [
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _customContainer(
+                        widget: Column(
+                          children: [_dropdownRow(), _customRadioBar()],
+                        ),
+                        textLabel: "Enter/Paste your data"),
+                    _customContainer(
+                        widget: Text(
+                      "VIEW CIPHER",
+                      style: TextStyles.h2,
+                    ))
+                  ],
+                ),
+                _customCipher()
+              ],
+            ),
           ),
-        ),
+        ]),
       ),
     );
   }
@@ -56,16 +63,22 @@ Widget _customContainer({required Widget widget, String? textLabel}) {
         height: SizeConfig.deviceHeight! * 30,
         width: SizeConfig.deviceWidth! * 30,
         decoration: BoxDecoration(
-            color: Color(0xffb19cdb), borderRadius: BorderRadius.circular(30)),
+            color: Color.fromARGB(241, 255, 255, 255),
+            borderRadius: BorderRadius.circular(30)),
       )
     ],
   );
 }
 
 Widget _customCipher() {
-  return CircleAvatar(
-    minRadius: SizeConfig.deviceHeight! * 28,
-    backgroundColor: Colors.white,
+  return Column(
+    children: [
+      InfoTab(),
+    ],
+
+    // CircleAvatar(
+    //   minRadius: SizeConfig.deviceHeight! * 28,
+    //   backgroundColor: Colors.white,
   );
 }
 
@@ -90,21 +103,37 @@ Widget _dropdownRow() {
 
 _code() {}
 
-Widget _customRadioButton() {
-  // return Row(
-  // children: [
-  return RadioListTile(
-    value: false,
-    groupValue: false,
-    onChanged: _code(),
-    title: Text("Caesar Cipher"),
+Widget _customRadioBar() {
+  return Row(
+    children: [
+      Row(
+        children: [
+          Radio(
+            fillColor: MaterialStateProperty.all(Colors.green),
+            value: false,
+            groupValue: false,
+            onChanged: _code(),
+          ),
+          Text(
+            "Caesar Cipher",
+            style: TextStyles.h3,
+          )
+        ],
+      ),
+      Row(
+        children: [
+          Radio(
+            fillColor: MaterialStateProperty.all(Colors.green),
+            value: false,
+            groupValue: false,
+            onChanged: _code(),
+          ),
+          Text(
+            "Caesar Cipher",
+            style: TextStyles.h3,
+          )
+        ],
+      )
+    ],
   );
-  // RadioListTile(
-  //   value: false,
-  //   groupValue: false,
-  //   onChanged: _code(),
-  //   title: Text("Vigenere Cipher"),
-  // )
-  // ],
-  // );
 }

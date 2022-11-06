@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'utils/size_config.dart';
-import 'view/caesar_view.dart';
 import 'view/error_screen.dart';
-import 'view/vigenere_view.dart';
 
 void main() {
   setPathUrlStrategy();
